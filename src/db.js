@@ -7,6 +7,7 @@ const PRODUCTS = [
 		sale: true,
 		salePercent: 2,
 		categories: ["Boat"],
+		isFavourite: true,
 	},
 	{
 		id: 2,
