@@ -3,12 +3,19 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
+import { persistor, store } from "./app/store";
+import { PersistGate } from "redux-persist/integration/react";
+
+import {
+	createBrowserRouter,
+	RouterProvider,
+	// Route,
+	// Link,
+} from "react-router-dom";
 import Account from "./components/Account";
-import FavouritesList from "./components/Favourites";
 import ItemsList from "./components/ItemsList";
-import store from "./app/store";
+import FavouritesList from "./components/FavouritesList";
 
 const router = createBrowserRouter([
 	{
@@ -34,7 +41,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<Provider store={store}>
-		<RouterProvider router={router} />
+		<PersistGate loading={null} persistor={persistor}>
+			<RouterProvider router={router} />
+		</PersistGate>
 	</Provider>
 );
 

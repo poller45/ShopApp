@@ -1,7 +1,39 @@
+import db from "../db";
+import { useState } from "react";
+import { login } from "../features/account/accountSlice";
+import { useDispatch } from "react-redux";
+// import { redirect } from "react-router-dom";
+
 export default function Account() {
+	const [userEmail, setUserEmail] = useState("");
+	const [userPassword, setUserPassword] = useState("");
+	// const [showWrongUser, setShowWrongUser] = useState(false);
+	const dispatch = useDispatch();
+	const handelSubmit = (event) => {
+		event.preventDefault();
+		const isUserExist = db.usersDb.find((el) => el.email === userEmail);
+		if (isUserExist) {
+			if (isUserExist.password === userPassword) {
+				dispatch(login(isUserExist));
+				//window.location.href = "/favourites";
+
+				// console.log("eeeee");
+				// console.log(isUserExist);
+			}
+			// setShowWrongUser(true);
+			// } else {
+			// 	setShowWrongUser(false);
+		}
+		console.log(isUserExist);
+
+		console.log(db.usersDb);
+		console.log(userEmail);
+		console.log(userPassword);
+		console.log("!!!!!!!");
+	};
 	return (
 		<div className="columns">
-			<form id="LoginForm" className="userForm">
+			<form className="userForm" onSubmit={handelSubmit}>
 				<h2 className="title">Secure Sign In</h2>
 				<p className="desription">For current customers</p>
 
@@ -12,7 +44,8 @@ export default function Account() {
 						type="email"
 						placeholder="Email Address"
 						data-name="email"
-						value="ivan@gmail.com"
+						value={userEmail}
+						onChange={(event) => setUserEmail(event.target.value)}
 						required
 					/>
 				</label>
@@ -22,7 +55,8 @@ export default function Account() {
 						type="password"
 						placeholder="Password"
 						data-name="password"
-						value="123"
+						value={userPassword}
+						onChange={(event) => setUserPassword(event.target.value)}
 						required
 					/>
 				</label>
@@ -30,7 +64,7 @@ export default function Account() {
 				<button className="btn">Sign in</button>
 			</form>
 
-			<form id="RegistrationForm" className="userForm">
+			{/* <form id="RegistrationForm" className="userForm">
 				<h2 className="title">Quick Registration</h2>
 				<p className="desription">For new customers</p>
 
@@ -45,7 +79,11 @@ export default function Account() {
 						required
 					/>
 				</label>
-
+				 {!showWrongUser && (
+					<div style={{ color: "red", marginBottom: "10px" }}>
+						Wrong User Email
+					</div>
+				)} 
 				<label>
 					<input
 						type="email"
@@ -77,7 +115,7 @@ export default function Account() {
 				</label>
 
 				<button className="btn">Create Account</button>
-			</form>
+			</form> */}
 		</div>
 	);
 }

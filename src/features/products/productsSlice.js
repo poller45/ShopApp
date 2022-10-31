@@ -6,7 +6,7 @@ export const productsSlice = createSlice({
 	initialState: {
 		value: db.productsDb,
 	},
-	reducer: {},
+	reducers: {},
 });
 
 export default productsSlice.reducer;
