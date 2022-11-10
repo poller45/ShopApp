@@ -16,8 +16,8 @@ export default function Registration() {
 			dispatch(
 				addNewUser({ name: userName, email: userEmail, password: userPassword })
 			);
-			console.log("?????");
-		} else {
+      }
+      else {
 			alert("Password did not match");
 		}
 	};

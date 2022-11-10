@@ -7,7 +7,7 @@ export default function FavouritesList() {
     const result = products.find((item) => item.id === idFav);
     return result;
   });
-  console.log(isUserLogin);
+  //console.log(isUserLogin);
   if (!isUserLogin) {
     // redirect
     return <div>Please Login</div>;
@@ -33,7 +33,7 @@ export default function FavouritesList() {
                 <td>
                   <div className="item__info">
                     <img
-                      src={"images/products/" + item.img + ".png"}
+                      src={"/images/products/" + item.img + ".png"}
                       alt="Cabriolet"
                       height="100"
                     />
@@ -54,7 +54,7 @@ export default function FavouritesList() {
                 <td>
                   <button className="item__favourite">
                     <img
-                      src="images/product__favourite--true.png"
+                      src="/images/product__favourite--true.png"
                       alt="favourite"
                       height="20"
                     />
