@@ -1,11 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addFavourite } from "../features/account/accountSlice";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function ItemsList() {
 	const products = useSelector((state) => state.products.value);
 	const user = useSelector((state) => state.account.value);
-
+	const account = useSelector((state) => state.account.value);
+	const navigate = useNavigate();
+	console.log("userStatuS", account.status);
 	const checkIfFavourite = (id) => {
 		const result = user.favourites.find((fav) => fav === id);
 		return result;
@@ -22,7 +25,11 @@ export default function ItemsList() {
 						<button
 							className="product__favourite"
 							onClick={() => {
-								dispatch(addFavourite(item.id));
+								if (account.status) {
+									dispatch(addFavourite(item.id));
+								} else {
+									navigate("/account");
+								}
 							}}
 						>
 							<img
