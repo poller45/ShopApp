@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { login } from "../features/account/accountSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 	const users = useSelector((state) => state.users.value);
 	const [userEmail, setUserEmail] = useState("ivan@gmail.com");
 	const [userPassword, setUserPassword] = useState("123");
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		// Find User and Match Password
@@ -46,7 +48,14 @@ export default function Login() {
 				/>
 			</label>
 
-			<button className="btn">Sign in</button>
+			<button
+				className="btn"
+				onClick={() => {
+					navigate("/");
+				}}
+			>
+				Sign in
+			</button>
 		</form>
 	);
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewUser } from "../features/users/usersSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Registration() {
 	const [userName, setUserName] = useState("");
@@ -16,8 +17,7 @@ export default function Registration() {
 			dispatch(
 				addNewUser({ name: userName, email: userEmail, password: userPassword })
 			);
-      }
-      else {
+		} else {
 			alert("Password did not match");
 		}
 	};
